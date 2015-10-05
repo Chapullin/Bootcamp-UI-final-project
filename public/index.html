@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html ng-app="myApp" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+	<meta name="description" content="Minimal List Twitter. Because some time less is moore, Please simplify!">
+	<meta name="keywords" content="twitter,minimalist,minimal,list,app,webapp">
+	<meta name="author" content="Cristian Molinero">
+	<meta name="contact" content="molinero.cristian.d@gmail.com">
+
+	<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+	<script type="text/javascript" src="node_modules/angular/angular.js" ></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script type="text/javascript" src="js/myApp.js" ></script>
+	
+	
+
+	<title>Minimal List Twitter</title>
+
+</head>
+<body>
+<div ng-controller="TwitterServerCtrl">
+	<ul>
+		<li ng-repeat="x in names">
+			<b>{{x.user.name}}</b>:<br>{{' ' + x.text }}
+		</li>
+	</ul>
+	</div>
+</body>
+</html>
+
+
+
+
