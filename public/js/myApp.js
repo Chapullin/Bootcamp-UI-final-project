@@ -9,9 +9,10 @@ app.controller('TimeLineCtrl',  function ($scope, $http) {
 
 	controller('TwittDetailCtrl',  function ($scope, $http, $routeParams) {
 		$http.get("http://localhost:3000/timeline?count=100")
-		.success(function (response, $scope, $routeParams) {
+		.success(function (response) {
 			$scope.timeline = response;
 			$scope.id = $routeParams.id;
+			console.log(response);
 			for (var i = 0; i < 100; i++) {
 				if ($scope.timeline[i].id === $routeParams.id) {
 					$scope.twitt = $scope.timeline[i];
@@ -20,7 +21,7 @@ app.controller('TimeLineCtrl',  function ($scope, $http) {
 
 	controller('TrendsCtrl',  function ($scope, $http, $routeParams) {
 		$http.get("http://localhost:3000/trends?id=23424747")
-		.success(function (response, $scope, $routeParams) {
+		.success(function (response) {
 			$scope.trends = response;
 			})
 	});
