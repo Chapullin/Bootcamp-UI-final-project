@@ -12,11 +12,21 @@
 		<img ng-src="{{twitt.user.profile_image_url}}" alt="Image {{twitt.user.name}}">
 
 		<!-- UserName and @twittername -->
-		<b>{{twitt.user.name + ' '}}</b> @{{twitt.user.screen_name}} 
+		<b>{{twitt.user.name + ' '}}</b>
+		<br>@{{twitt.user.screen_name}} 
 		twitt.date {{twitt.date}}
 		<br>
-
 		{{' ' + twitt.text}}
+		<p>{{twitt.created_at}}</p> <!-- hh:mmpm - dd MM YY -->
+		<hr>
+		{{twitt.retweet_count}} RETWEETS {{twitt.favorite_count}} FAVORITES
+		<hr>
+		
+		<!-- back icon -->
+		<!-- retweet icon -->
+		<!-- favorite icon -->
+		<!-- options -->
+
 	</a>
 </div>
 
