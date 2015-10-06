@@ -1,0 +1,22 @@
+		
+<!-- only shows if it was retweeted -->
+<div ng-show:"twitt.retweeted">
+	<p>Retweeted by @{{twitt.user.name}}</p>
+</div>
+
+<!-- only shows if it wasn't retweeted -->
+<div ng-hide="twitt.retweeted">
+
+	<a href="#/{{twitt.id}}">
+		<!-- img -->	
+		<img ng-src="{{twitt.user.profile_image_url}}" alt="Image {{twitt.user.name}}">
+
+		<!-- UserName and @twittername -->
+		<b>{{twitt.user.name + ' '}}</b> @{{twitt.user.screen_name}} 
+		twitt.date {{twitt.date}}
+		<br>
+
+		{{' ' + twitt.text}}
+	</a>
+</div>
+

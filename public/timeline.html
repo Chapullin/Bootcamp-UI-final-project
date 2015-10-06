@@ -1,0 +1,25 @@
+		<ul>
+			<li ng-repeat="x in timeline">
+				<!-- only shows if it was retweeted -->
+				<div ng-show:"x.retweted">
+					<p ng-show:"{{x.retweeted}}">Retweeted by @{{x.user.name}}</p>
+					<p> x.retweeted = {{x.retweeted}}</p>
+					<p>show = {{x.retweeted}}</p>
+				</div>
+
+				<div ng-hide="x.retweeted">
+					
+					<a href="#/{{x.id}}">
+						<!-- img -->	
+						<img ng-src="{{x.user.profile_image_url}}" alt="Image {{x.user.name}}">
+
+						<!-- UserName and @twittername -->
+						<b>{{x.user.name + ' '}}</b> @{{x.user.screen_name}} 
+						x.date {{x.date}}
+						<br>
+
+						{{' ' + x.text}}
+					</a>
+				</div>
+			</li>
+		</ul>
