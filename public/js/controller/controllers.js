@@ -1,4 +1,4 @@
-app.controller('TimeLineCtrl', ['$scope', 'responseTimeline', function ($scope, response, $routeParams){
+app.controller('TimeLineCtrl', ['$scope', '$routeParams', 'responseTimeline', function ($scope, $routeParams, response){
 		$scope.loading = true;
 		$scope.timeline = response;
 		console.log('controller TimeLineCtrl------------------------------');
