@@ -1,16 +1,27 @@
 app.controller('TimeLineCtrl', ['$scope', '$routeParams', 'responseTimeline', function ($scope, $routeParams, response){
+	console.log('controller TimeLineCtrl------------------------------');
+
+	var timeline = function () {
 		$scope.loading = true;
-		$scope.timeline = response;
-		console.log('controller TimeLineCtrl------------------------------');
-		console.log('$routeParams= ' + $routeParams);
-		console.log('response= ' + response);
-		console.log('$scope.timeline= ' + $scope.timeline);
-		console.log('$scope.timeline[0]= ' + $scope.timeline[0]);
+		AJAX.query({
+		url: 'http://localhost:3000/timeline',
+        }, function (data) { // callback
+        	$scope.loading = false;
+        	if (data) {
+        		/*$scope.timeline = data;*/
+        		console.log('we entry to the if');
+        		console.log('data= ', data);
+        		console.log('$scope.timeline= ' , $scope.timeline);
+        		console.log('$scope.timeline[0]= ' , $scope.timeline[0]);
+        	}
+        });
+	};
+	$scope.timeline= timeline;
+	
 		/*console.log('$routeParams.id= ' + $routeParams.id);	
 			console.log('$routeParams= ' + $routeParams);
 			console.log('$scope.timeline[i].id= ' + $scope.timeline[i].id); */
-		}
-	]).
+		}]).
 
 	/*controller('TwittDetailCtrl',  function ($scope, $routeParams, $http) {
 		$http.get("http://localhost:3000/timeline?count=10")
@@ -29,10 +40,10 @@ app.controller('TimeLineCtrl', ['$scope', '$routeParams', 'responseTimeline', fu
 				}};
 			})}). */
 
-	controller('TrendsCtrl',  function ($scope, $http, $routeParams) {
-		$http.get("http://localhost:3000/trends?id=23424747")
-		.success(function (response) {
-			$scope.trends = response;
-			})
-	});
+controller('TrendsCtrl',  function ($scope, $http, $routeParams) {
+	$http.get("http://localhost:3000/trends?id=23424747")
+	.success(function (response) {
+		$scope.trends = response;
+	})
+});
 
