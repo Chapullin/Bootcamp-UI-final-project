@@ -12,7 +12,6 @@
 	<script type="text/javascript" src="node_modules/angular/angular.js" ></script>
 	<script type="text/javascript" src="node_modules/angular-route/angular-route.js" ></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-	<script type="text/javascript" src="js/myApp.js" ></script>
 	
 	
 
@@ -20,17 +19,22 @@
 
 </head>
 <body>
-	<div ng-controller="TimeLineCtrl">
+	<div>
 		<section>
 			<ul>
-				<li><a href="#/timeline">Home</a></li>
+				<li><a href="#/">Home</a></li>
 				<li><a href="#/trends">Trends</a></li>
 			</ul>
 		</section>
+		<hr>
 		
 		<div ng-view></div>
-
 	</div>
+
+	<script type="text/javascript" src="js/myApp.js" ></script>
+	<script type="text/javascript" src="js/factory/server-response.js" ></script>
+	<script type="text/javascript" src="js/controller/controllers.js" ></script>
+	
 </body>
 </html>
 
