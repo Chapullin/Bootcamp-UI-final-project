@@ -12,13 +12,16 @@ app.controller('TimeLineCtrl', ['$scope', '$routeParams', 'ajax', function ($sco
         	if (data) {
         		/*$scope.timeline = data;*/
         		console.log('we entry to the if');
+        		$scope.timeline= data;
+        		console.log('timeline =', timeline);
+        		console.log('$scope.timeline =', $scope.timeline);
         		
         		}
         });
 	})();
 	console.log('that is all folks');
 	console.log('after de definition timeline=', timeline);	
-	$scope.timeline= timeline;
+	
 	console.log('we are outside de var, and the $scope.timeline= ' , $scope.timeline);
 	
 		/*console.log('$routeParams.id= ' + $routeParams.id);	
