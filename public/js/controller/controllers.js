@@ -1,22 +1,25 @@
-app.controller('TimeLineCtrl', ['$scope', '$routeParams', 'responseTimeline', function ($scope, $routeParams, response){
+app.controller('TimeLineCtrl', ['$scope', '$routeParams', 'ajax', function ($scope, $routeParams, AJAX){
 	console.log('controller TimeLineCtrl------------------------------');
-
-	var timeline = function () {
+	var timeline = (function () {
 		$scope.loading = true;
+		console.log('we are inside the function inside de var timeline = function ()');
 		AJAX.query({
 		url: 'http://localhost:3000/timeline',
         }, function (data) { // callback
         	$scope.loading = false;
+			console.log('We are in the function inside de ajax.querydata= ');
+        	console.log('data= ', data);
         	if (data) {
         		/*$scope.timeline = data;*/
         		console.log('we entry to the if');
-        		console.log('data= ', data);
-        		console.log('$scope.timeline= ' , $scope.timeline);
-        		console.log('$scope.timeline[0]= ' , $scope.timeline[0]);
-        	}
+        		
+        		}
         });
-	};
+	})();
+	console.log('that is all folks');
+	console.log('after de definition timeline=', timeline);	
 	$scope.timeline= timeline;
+	console.log('we are outside de var, and the $scope.timeline= ' , $scope.timeline);
 	
 		/*console.log('$routeParams.id= ' + $routeParams.id);	
 			console.log('$routeParams= ' + $routeParams);
