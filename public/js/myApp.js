@@ -16,6 +16,10 @@ app.config(['$routeProvider',
 				templateUrl: '/trends.html',
 				controller: 'TrendsCtrl'
 			}).
+			when('/trends/:query', {
+				templateUrl: '/trends-search.html',
+				controller: 'TrendsSearchCtrl'
+			}).
 
 			otherwise({
 				redirectTo: '/'
