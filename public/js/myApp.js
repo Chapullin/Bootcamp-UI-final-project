@@ -16,7 +16,7 @@ app.config(['$routeProvider',
 				templateUrl: '/trends.html',
 				controller: 'TrendsCtrl'
 			}).
-			when('/trends/:query', {
+			when('/search/:query', {
 				templateUrl: '/trends-search.html',
 				controller: 'TrendsSearchCtrl'
 			}).

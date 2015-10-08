@@ -30,7 +30,6 @@ controller('TwittDetailCtrl',['$scope', '$routeParams', 'ajax',function ($scope,
         		$scope.id = $routeParams.id;
 	       		for (var i = 0; i < data.length; i++) {
         			if (data[i].id == $routeParams.id) {
-        				window.alert('adentro del if');
         				$scope.twitt = data[i];
         				
         			}};
@@ -52,9 +51,6 @@ controller('TrendsCtrl', ['$scope', '$routeParams',  'ajax', function ($scope, $
         	console.log(data);
         	if (data) {
         		$scope.trends= data;
-        		console.log('data = ', data);
-        		console.log('data[0].trends.name[0]', data[0].trends[1].name);
-        		console.log('data[0].trends.length', data[0].trends.length);
         	}
         });
 	})();
@@ -62,25 +58,28 @@ controller('TrendsCtrl', ['$scope', '$routeParams',  'ajax', function ($scope, $
 
 controller('TrendsSearchCtrl',['$scope', '$routeParams', 'ajax',function ($scope, $routeParams, AJAX){
 	console.log('controller TrendsListCtrl------------------------------');
-	var trendList = (function () {
+	var trend = (function () {
 		$scope.loading = true;
+		console.log('http://localhost:3000/search?q=', $routeParams.query);
+		console.log
 		AJAX.query({
 			url: ('http://localhost:3000/search?q='+ $routeParams.query),
         }, function (data) { // callback
+        	console.log('con , http://localhost:3000/search?q=', $routeParams.query);
+        	console.log('con + http://localhost:3000/search?q='+ $routeParams.query);
         	$scope.loading = false;
         	if (data) {
-        		$scope.trendList= data;
+        		$scope.trend= data;
         		$scope.id = $routeParams.id;
-	       		for (var i = 0; i < data.length; i++) {
-        			if (data[i].id == $routeParams.id) {
-        				window.alert('adentro del if');
-        				$scope.twitt = data[i];
-        				
-        			}};
+	       		if (data) {
+    				window.alert('adentro del if');
+    				$scope.twitt = data[i];
+        			};
         		}
         	});
 	})();
 }]).
+
 
 ;
 

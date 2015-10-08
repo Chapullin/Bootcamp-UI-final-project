@@ -7,14 +7,13 @@
 <!-- only shows if it wasn't retweeted -->
 <div ng-hide="twitt.retweeted">
 
-	<a href="#/{{twitt.id}}">
+	
 		<!-- img -->	
 		<img ng-src="{{twitt.user.profile_image_url}}" alt="Image {{twitt.user.name}}">
 
 		<!-- UserName and @twittername -->
 		<b>{{twitt.user.name + ' '}}</b>
 		<br>@{{twitt.user.screen_name}} 
-		twitt.date {{twitt.date}}
 		<br>
 		{{' ' + twitt.text}}
 		<p>{{twitt.created_at}}</p> <!-- hh:mmpm - dd MM YY -->
@@ -27,7 +26,4 @@
 		<!-- favorite icon -->
 		<!-- options -->
 		<hr>
-
-	</a>
 </div>
-

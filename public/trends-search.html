@@ -1,11 +1,10 @@
-<h1>Trend Search</h1>
+<h1></h1>
 		<ul>
-			<li ng-repeat="x in timeline">
+			<li ng-repeat="x in trend.statuses">
 					<div ng-show="x.retweted">
 					<p ng-show="{{x.retweeted}}">Retweeted by @{{x.user.name}}</p>
 					
 	 			</div>
-
 				<!-- only shows if it was NOT retweeted -->
 				<div ng-hide="x.retweeted">
 				 		
