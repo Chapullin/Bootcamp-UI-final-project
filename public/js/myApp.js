@@ -14,13 +14,16 @@ app.config(['$routeProvider',
 			}).
 			when('/trends', {
 				templateUrl: '/trends.html',
-				controller: 'TrendsCtrl'
+				controller: 'TrendsListCtrl'
 			}).
-			when('/search/:query', {
+			when('/search/trends/:query', {
 				templateUrl: '/trends-search.html',
 				controller: 'TrendsSearchCtrl'
 			}).
-
+			when('/search/trends/twit/:query', {
+				templateUrl: '/trend-tweet-detail.html',
+				controller: 'TrendTwitDetailCtrl'
+			}).
 			otherwise({
 				redirectTo: '/'
 			});
