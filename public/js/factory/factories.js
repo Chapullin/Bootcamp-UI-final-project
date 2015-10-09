@@ -26,7 +26,7 @@ app.factory('ajax', function ($http) {
             if (!coords && navigator.geolocation) { // if coords haven't been determined yet and if browser allows to get them
               console.log(' we are inside of the if !coords && navigator.geolocation' );
               navigator.geolocation.getCurrentPosition(function (pos) { // user shared his coords
-                onUserChoice(pos);
+                onUserChoice(cb, pos);
                 console.log('ohhhsole mio');
                 console.log('pos=', pos);
               }, function () { // user didn't share his coords
@@ -38,7 +38,7 @@ app.factory('ajax', function ($http) {
             window.alert('uops!! coords are already determined or browser doesnt allow to get them');
           }
         },
-        onUserChoice = function (pos) {
+        onUserChoice = function (cb, pos) {
           console.log('we are inside of onUserChoice');
           if (pos) {
             console.log('we are inside the if');

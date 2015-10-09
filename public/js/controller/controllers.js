@@ -18,7 +18,7 @@ app.controller('TimeLineCtrl', ['$scope', '$routeParams', '$location', 'ajax', f
    console.log('under TrendsCtrl <<<<<<<<<<<<<<<<<<<');
    GEOLOCALISATION.getUserCoords(function (coordinates) {
               //http://localhost:3000/myplace?lat=-38.7116780&long=-62.2680780
-      console.log('WE ARE INSIDE OF VAR GEO ');
+      console.log('WE ARE INSIDE OF  GEOLOCALISATION.getUserCoords ');
               $scope.msgCoordinates = coordinates
               ? 'lat=' + coordinates.coords.latitude + '\&long=' + coordinates.coords.longitude
               : 'Coordinates couldn\'t be determined.';
