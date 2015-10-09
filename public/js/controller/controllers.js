@@ -15,8 +15,8 @@ app.controller('TimeLineCtrl', ['$scope', '$routeParams', '$location', 'ajax', f
 }])
 
 .controller('TrendsListCtrl', ['$scope', '$routeParams', 'ajax', 'geolocalisation', function ($scope, $routeParams, AJAX, GEOLOCALISATION){
- console.log('under TrendsCtrl <<<<<<<<<<<<<<<<<<<');
- var geo = (function (){
+   console.log('under TrendsCtrl <<<<<<<<<<<<<<<<<<<');
+   var geo = function (){
     GEOLOCALISATION.getUserCoords(function (coordinates) {
               //http://localhost:3000/myplace?lat=-38.7116780&long=-62.2680780
               console.log('WE ARE INSIDE OF VAR GEO ');
@@ -26,60 +26,58 @@ app.controller('TimeLineCtrl', ['$scope', '$routeParams', '$location', 'ajax', f
               console.log('coordinates.coords.latitude= ', coordinates.coords.latitude);
               console.log('$scope.msgCoordinates= ', $scope.msgCoordinates);
               $scope.$apply(); // assure that $scope changes are applied to the view
-          });
-})();
-
-$scope.geo = geo;
-console.log('$scope.geo= ', $scope.geo);
-$scope.coordsAvailable = GEOLOCALISATION.canGetCoords;
-console.log('$scope.coordsAvailable =', $scope.coordsAvailable);
 
 
+              $scope.coordsAvailable = GEOLOCALISATION.canGetCoords;
+              console.log('$scope.coordsAvailable =', $scope.coordsAvailable);
 
-if ($scope.coordsAvailable) {
-    AJAX.query({
-       url: ('http://localhost:3000/myplace?'+ $scope.msgCoordinates),
+
+              if ($scope.coordsAvailable) {
+                AJAX.query({
+                 url: ('http://localhost:3000/myplace?'+ $scope.msgCoordinates),
+                            }, function (data) { // callback
+                              if (data) {
+                                window.alert('ia tu sabes donde estamos!!');
+                                console.log('data =', data);
+                                $scope.idCountry = data.woeid;
+                                console.log('$scope.idCountry =', $scope.idCountry);
+                            }
+                        });
+            } else{
+                $scope.idCountry = 23424747;
+            };
+
+            var trends = (function () {
+              $scope.loading = true;
+
+              AJAX.query({
+                 url: ('http://localhost:3000/trends?id='+ $scope.idCountry),
                 }, function (data) { // callback
-                  if (data) {
-window.alert('ia tu sabes donde estamos!!');
-                      console.log('data =', data);
-                      $scope.idCountry = data.woeid;
-                      console.log('$scope.idCountry =', $scope.idCountry);
-                  }
-              });
-} else{
-    $scope.idCountry = 23424747;
-};
-
-var trends = (function () {
-  $scope.loading = true;
-
-  AJAX.query({
-   url: ('http://localhost:3000/trends?id='+ $scope.idCountry),
-                }, function (data) { // callback
-                	$scope.loading = false;
-                  if (data) {
+                    $scope.loading = false;
+                    if (data) {
                       $scope.trends= data;
                   }
               });
-})();
+          })();
+      });
+    };
 }])
 
 .controller('TrendsSearchCtrl',['$scope', '$routeParams', 'ajax',function ($scope, $routeParams, AJAX){
- console.log('controller TrendsListCtrl------------------------------');
- var trend = (function () {
-  $scope.loading = true;
-  AJAX.query({
-   url: ('http://localhost:3000/search?q='+ $routeParams.query),
+   console.log('controller TrendsListCtrl------------------------------');
+   var trend = (function () {
+      $scope.loading = true;
+      AJAX.query({
+         url: ('http://localhost:3000/search?q='+ $routeParams.query),
                 }, function (data) { // callback
                 	console.log('con + http://localhost:3000/search?q='+ $routeParams.query);
                 	$scope.loading = false;
                 	if (data) {
-                       $scope.id = $routeParams.id;
-                       $scope.trend = data;   
-                   }
-               });
-})();
+                     $scope.id = $routeParams.id;
+                     $scope.trend = data;   
+                 }
+             });
+  })();
 }])
 
 .controller('TrendTwitDetailCtrl',['$scope', '$routeParams', 'ajax',function ($scope, $routeParams, AJAX){
