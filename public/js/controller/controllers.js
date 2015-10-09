@@ -15,30 +15,44 @@ app.controller('TimeLineCtrl', ['$scope', '$routeParams', '$location', 'ajax', f
 }])
 
 .controller('TrendsListCtrl', ['$scope', '$routeParams', 'ajax', 'geolocalisation', function ($scope, $routeParams, AJAX, GEOLOCALISATION){
-   console.log('under TrendsCtrl <<<<<<<<<<<<<<<<<<<');
-   GEOLOCALISATION.getUserCoords(function (coordinates) {
+ console.log('under TrendsCtrl <<<<<<<<<<<<<<<<<<<');
+ GEOLOCALISATION.getUserCoords(function (coordinates) {
               //http://localhost:3000/myplace?lat=-38.7116780&long=-62.2680780
-      console.log('WE ARE INSIDE OF  GEOLOCALISATION.getUserCoords ');
+              console.log('WE ARE INSIDE OF  GEOLOCALISATION.getUserCoords ');
               $scope.msgCoordinates = coordinates
               ? 'lat=' + coordinates.coords.latitude + '\&long=' + coordinates.coords.longitude
               : 'Coordinates couldn\'t be determined.';
-      console.log('coordinates.coords.latitude= ', coordinates.coords.latitude);
-      console.log('$scope.msgCoordinates= ', $scope.msgCoordinates);
+              console.log('coordinates.coords.latitude= ', coordinates.coords.latitude);
+              console.log('$scope.msgCoordinates= ', $scope.msgCoordinates);
               $scope.$apply(); // assure that $scope changes are applied to the view
 
 
               $scope.coordsAvailable = GEOLOCALISATION.canGetCoords;
-      console.log('$scope.coordsAvailable =', $scope.coordsAvailable);
+              console.log('$scope.coordsAvailable =', $scope.coordsAvailable);
 
 
               if ($scope.coordsAvailable) {
                 AJAX.query({
-                 url: ('http://localhost:3000/myplace?'+ $scope.msgCoordinates),
+                   url: ('http://localhost:3000/myplace?'+ $scope.msgCoordinates),
                             }, function (data) { // callback
                               if (data) {
                                 console.log('data =', data);
                                 $scope.idCountry = data[0].parentid;
                                 console.log('$scope.idCountry =', $scope.idCountry);
+
+                                AJAX.query({
+                                   url: ('http://localhost:3000/trends?id='+ $scope.idCountry),
+                                }, function (data) { // callback
+                                    console.log('http://localhost:3000/trends?id='+ $scope.idCountry);
+                                                                        $scope.loading = false;
+                                    if (data) {
+                                      $scope.trends= data;
+                                  }
+                              });
+
+
+
+
                             }
                         });
             } else{
@@ -49,37 +63,29 @@ app.controller('TimeLineCtrl', ['$scope', '$routeParams', '$location', 'ajax', f
             var trends = (function () {
               $scope.loading = true;
 
-              AJAX.query({
-                 url: ('http://localhost:3000/trends?id='+ $scope.idCountry),
-                }, function (data) { // callback
-                    console.log('http://localhost:3000/trends?id='+ $scope.idCountry);
-                    console.log('url='+ url);
-                    console.log('url=', url);
-                    $scope.loading = false;
-                    if (data) {
-                      $scope.trends= data;
-                  }
-              });
+              /*poner un if si scope.idCountry no es undefined tanto sino mandale el id que te plazca*/
+
+
           })();
       });
-    
+
 }])
 
 .controller('TrendsSearchCtrl',['$scope', '$routeParams', 'ajax',function ($scope, $routeParams, AJAX){
-   console.log('controller TrendsListCtrl------------------------------');
-   var trend = (function () {
-      $scope.loading = true;
-      AJAX.query({
-         url: ('http://localhost:3000/search?q='+ $routeParams.query),
+ console.log('controller TrendsListCtrl------------------------------');
+ var trend = (function () {
+  $scope.loading = true;
+  AJAX.query({
+   url: ('http://localhost:3000/search?q='+ $routeParams.query),
                 }, function (data) { // callback
                 	console.log('con + http://localhost:3000/search?q='+ $routeParams.query);
                 	$scope.loading = false;
                 	if (data) {
-                     $scope.id = $routeParams.id;
-                     $scope.trend = data;   
-                 }
-             });
-  })();
+                       $scope.id = $routeParams.id;
+                       $scope.trend = data;   
+                   }
+               });
+})();
 }])
 
 .controller('TrendTwitDetailCtrl',['$scope', '$routeParams', 'ajax',function ($scope, $routeParams, AJAX){
