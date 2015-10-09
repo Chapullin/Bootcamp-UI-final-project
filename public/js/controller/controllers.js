@@ -16,20 +16,19 @@ app.controller('TimeLineCtrl', ['$scope', '$routeParams', '$location', 'ajax', f
 
 .controller('TrendsListCtrl', ['$scope', '$routeParams', 'ajax', 'geolocalisation', function ($scope, $routeParams, AJAX, GEOLOCALISATION){
    console.log('under TrendsCtrl <<<<<<<<<<<<<<<<<<<');
-   var geo = function (){
-    GEOLOCALISATION.getUserCoords(function (coordinates) {
+   GEOLOCALISATION.getUserCoords(function (coordinates) {
               //http://localhost:3000/myplace?lat=-38.7116780&long=-62.2680780
-              console.log('WE ARE INSIDE OF VAR GEO ');
+      console.log('WE ARE INSIDE OF VAR GEO ');
               $scope.msgCoordinates = coordinates
               ? 'lat=' + coordinates.coords.latitude + '\&long=' + coordinates.coords.longitude
               : 'Coordinates couldn\'t be determined.';
-              console.log('coordinates.coords.latitude= ', coordinates.coords.latitude);
-              console.log('$scope.msgCoordinates= ', $scope.msgCoordinates);
+      console.log('coordinates.coords.latitude= ', coordinates.coords.latitude);
+      console.log('$scope.msgCoordinates= ', $scope.msgCoordinates);
               $scope.$apply(); // assure that $scope changes are applied to the view
 
 
               $scope.coordsAvailable = GEOLOCALISATION.canGetCoords;
-              console.log('$scope.coordsAvailable =', $scope.coordsAvailable);
+      console.log('$scope.coordsAvailable =', $scope.coordsAvailable);
 
 
               if ($scope.coordsAvailable) {
@@ -44,6 +43,7 @@ app.controller('TimeLineCtrl', ['$scope', '$routeParams', '$location', 'ajax', f
                             }
                         });
             } else{
+                window.alert('wooopa salio del IF');
                 $scope.idCountry = 23424747;
             };
 
@@ -60,7 +60,7 @@ app.controller('TimeLineCtrl', ['$scope', '$routeParams', '$location', 'ajax', f
               });
           })();
       });
-    };
+    
 }])
 
 .controller('TrendsSearchCtrl',['$scope', '$routeParams', 'ajax',function ($scope, $routeParams, AJAX){

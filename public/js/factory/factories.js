@@ -28,10 +28,10 @@ app.factory('ajax', function ($http) {
               navigator.geolocation.getCurrentPosition(function (pos) { // user shared his coords
                 onUserChoice(pos);
               }, function () { // user didn't share his coords
-              onUserChoice();
+              onUserChoice(cb);
             });
             } else { // else, if coords are already determined or browser doesn't allow to get them
-            /*cb(coords);*/
+            cb(coords);
           }
         },
         onUserChoice = function (pos) {
@@ -39,7 +39,7 @@ app.factory('ajax', function ($http) {
             coords = pos;
           }
 
-          /* cb(coords); */
+          cb(coords);
         };
 
         return {
