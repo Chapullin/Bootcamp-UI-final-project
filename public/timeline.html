@@ -1,26 +1,69 @@
 <h1>TIMELINE</h1>
-		<ul>
-			<li ng-repeat="x in timeline">
-					<div ng-show="x.retweted">
-					<p ng-show="{{x.retweeted}}">Retweeted by @{{x.user.name}}</p>
-					
-	 			</div>
+<ul>
+	<li ng-repeat="x in timeline">
+		<div ng-init="twittDetail[x]=false " ng-click="twittDetail[x]=!twittDetail[x]">
 
-				<!-- only shows if it was NOT retweeted -->
-				<div ng-hide="x.retweeted">
-				 		
-					<a href="#/twit/{{x.id}}">
-						<!-- img -->	
-						<img ng-src="{{x.user.profile_image_url}}" alt="Image {{x.user.name}}">
+			<!-- only shows if it WAS retweeted -->
+			<div ng-show="x.retweeted_status.retweet_count">
+				<p>Retweeted by @{{x.user.name}}</p>
+				<!-- img -->	
+				<img ng-src="{{x.retweeted_status.user.profile_image_url}}" alt="Image {{x.retweeted_status.user.name}}">
+				<b>{{x.retweeted_status.user.name + ' '}}</b> @{{x.retweeted_status.user.screen_name}} 
+				
+				<!-- twittDetail to show or not shot the details -->
+				<div ng-show="twittDetail[x]">
+					<h4>{{' ' + x.retweeted_status.text}}</h4>
+					<p>{{x.retweeted_status.created_at}}</p> <!-- hh:mmpm - dd MM YY -->
+					<hr>
+					{{x.retweeted_status.retweet_count}} RETWEETS {{x.retweeted_status.favorite_count}} FAVORITES
+					<hr>
 
-						<!-- UserName and @twittername -->
-						<b>{{x.user.name + ' '}}</b> @{{x.user.screen_name}} 
-						
-						<br>
-
-						{{' ' + x.text}}
-					</a>
+					<!-- back icon -->
+					<!-- retweet icon -->
+					<!-- favorite icon -->
+					<!-- options -->
+					<hr>
 				</div>
-			</li>
-		</ul>
-		<img src="img/loading.gif" ng-show="loading">
+
+				<div ng-hide="twittDetail[x]">
+					<!-- UserName and @twittername -->
+					{{' ' + x.retweeted_status.text}}
+				</div>
+			</div>
+
+			<!-- only shows if it was NOT retweeted -->
+			<div ng-hide="x.retweeted_status">
+
+				<!-- img -->	
+				<img ng-src="{{x.user.profile_image_url}}" alt="Image {{x.user.name}}">
+				<b>{{x.user.name + ' '}}</b> @{{x.user.screen_name}} 
+				
+				<!-- twittDetail to show or not shot the details -->
+				<div ng-show="twittDetail[x]">
+					
+					<h4>{{' ' + x.text}}</h4>
+					<p>{{x.created_at}}</p> <!-- hh:mmpm - dd MM YY -->
+					<hr>
+					{{x.retweet_count}} RETWEETS {{x.favorite_count}} FAVORITES
+					<hr>
+
+					<!-- back icon -->
+					<!-- retweet icon -->
+					<!-- favorite icon -->
+					<!-- options -->
+					<hr>
+				</div>
+
+				<div ng-hide="twittDetail[x]">
+					<!-- UserName and @twittername -->
+					
+					
+					{{' ' + x.text}}
+				</div>
+
+			</div>
+		</div>
+	</li>
+</ul>
+
+<img src="img/loading.gif" ng-show="loading">
