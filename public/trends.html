@@ -1,12 +1,13 @@
-<h1>TRENDS</h1>
-		<ul>
-			<li ng-repeat="x in trends[0].trends">
-				<div ng-show="x.promoted_content">
-					<p>Promoted</p>	
-				</div>
-			
-				<a href="#/search/trends/{{x.query.slice(3)}}"><p>{{x.name}}</p></a>
-				<hr>
-			</li>
-		</ul>
+		<div class="list-group">
+			<ul class="col-sm-12">
+				<li class="list-group-item" ng-repeat="x in trends[0].trends">
+					<div ng-show="x.promoted_content">
+						<p>Promoted</p>	
+					</div>
+				
+					<a href="#/search/trends/{{x.query.slice(3)}}"><p>{{x.name}}</p></a>
+					<hr>
+				</li>
+			</ul>
+		</div>
 <img src="img/loading.gif" ng-show="loading">
