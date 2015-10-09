@@ -45,6 +45,7 @@ app.factory('ajax', function ($http) {
             coords = pos;
             console.log('coords = ', coords);
           }
+          cb (coords);
         };
 
         return {

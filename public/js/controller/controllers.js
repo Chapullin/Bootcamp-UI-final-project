@@ -36,9 +36,8 @@ app.controller('TimeLineCtrl', ['$scope', '$routeParams', '$location', 'ajax', f
                  url: ('http://localhost:3000/myplace?'+ $scope.msgCoordinates),
                             }, function (data) { // callback
                               if (data) {
-                                window.alert('ia tu sabes donde estamos!!');
                                 console.log('data =', data);
-                                $scope.idCountry = data.woeid;
+                                $scope.idCountry = data[0].parentid;
                                 console.log('$scope.idCountry =', $scope.idCountry);
                             }
                         });
@@ -53,6 +52,9 @@ app.controller('TimeLineCtrl', ['$scope', '$routeParams', '$location', 'ajax', f
               AJAX.query({
                  url: ('http://localhost:3000/trends?id='+ $scope.idCountry),
                 }, function (data) { // callback
+                    console.log('http://localhost:3000/trends?id='+ $scope.idCountry);
+                    console.log('url='+ url);
+                    console.log('url=', url);
                     $scope.loading = false;
                     if (data) {
                       $scope.trends= data;
